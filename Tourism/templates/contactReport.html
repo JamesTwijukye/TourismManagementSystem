@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Report</title>
+    <style>
+        body {
+            text-align: center;
+            font-family: 'Bookman Old Style', serif;
+        }
+        table {
+            width: 70%;
+            border-collapse: collapse;
+            margin: 0 auto;
+            border: 2px solid brown; /* Brown border for the table */
+        }
+        th, td {
+            border: 1px solid #dddddd;
+            text-align: left;
+            padding: 8px;
+            border: 1px solid green; /* Green border for th and td elements */
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+        .title {
+            color: #3333ff; /* Blue color */
+            font-size: 24px;
+        }
+        .author {
+            color: #008000; /* Green color */
+            font-style: italic;
+        }
+        .date {
+            color: blue; /* Blue color */
+        }
+    </style>
+</head>
+<body>
+    <h1 class="title">Contact Report</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Phone Number</th>
+                <th>Subject</th>
+                <th>Message</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for contact in contacts %}
+            <tr>
+                <td>{{ contact.name }}</td>
+                <td>{{ contact.email }}</td>
+                <td>{{ contact.phoneNumber }}</td>
+                <td>{{ contact.subject }}</td>
+                <td>{{ contact.message }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <br>
+    <br>
+    <div class="author">Twijukye James, 2022/BCS/021/PS</div>
+    <div id="date" class="date">Date: [insert dynamic date here]</div>
+
+    <script>
+        // Function to format the date as "23rd April 2024"
+        function formatDate(date) {
+            const options = { day: 'numeric', month: 'long', year: 'numeric' };
+            return date.toLocaleDateString('en-US', options);
+        }
+
+        // Get the current date
+        var currentDate = new Date();
+        // Format the date
+        var formattedDate = formatDate(currentDate);
+        // Update the date element with the formatted date
+        document.getElementById('date').textContent = "Date: " + formattedDate;
+    </script>
+</body>
+</html>

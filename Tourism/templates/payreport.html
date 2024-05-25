@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Payment Report</title>
+    <style>
+        /* CSS styles */
+        body {
+            text-align: center; /* Center align the body content */
+            
+            font-family: 'Bookman Old Style', serif;
+        }
+        h1 {
+            margin-bottom: 20px; /* Add margin below the title */
+            color: green; /* Set title color to green */
+        }
+        table {
+            margin: 0 auto; /* Center the table horizontally */
+            width: 65%; /* Set the table width to cover 65% of the viewport width */
+            max-width: 100%; /* Ensure table does not exceed 100% of the viewport width */
+            border: 2px solid brown; /* Set table border color to brown */
+        }
+        th, td {
+            padding: 10px; /* Add padding to table cells */
+            border: 1px solid brown; /* Set cell border color to brown */
+        }
+        .author-info {
+            margin-top: 20px; /* Add margin above the author information */
+            color: blue; /* Set author information color to blue */
+        }
+    </style>
+</head>
+<body>
+    <h1>Payment Report</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>services(number of rooms)</th>
+                <th>Price($)</th>
+                <th>Cardholder</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for payment in payments %}
+            <tr>
+                <td>{{ payment.services }}</td>
+                <td>{{ payment.price }}</td>
+                <td>{{ payment.cardholder }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <div class="author-info">
+        <p>Twijukye James, Reg No 2022/BCS/021/PS</p>
+        <p id="date-time"></p>
+    </div>
+    <script>
+        // JavaScript code to update date and time
+        function updateDateTime() {
+            var dateTimeElement = document.getElementById('date-time');
+            var currentDate = new Date();
+            var dateTimeString = "Date: " + currentDate.toLocaleDateString() + ", Time: " + currentDate.toLocaleTimeString();
+            dateTimeElement.textContent = dateTimeString;
+        }
+        setInterval(updateDateTime, 1000); // Update date and time every second
+        updateDateTime(); // Update date and time initially
+    </script>
+</body>
+</html>
